@@ -28,11 +28,36 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.canva {
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 24px;
+  height: auto;
+  top: 12px;
+  left: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: rgb(238, 237, 235);
+  fill: #413d3e;
+  list-style-type: none;
+  gap: 12px;
+  z-index: 100;
+}
+
+.toolbar li {
+  marker-end: none;
+}
+
+.toolbar li:hover {
+  fill: orange;
 }
