@@ -1,0 +1,77 @@
+.toolbar-wrapper {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.toolbar-wrapper .toolbar-menu {
+  display: flex;
+  flex-direction: column;
+  width: 24px;
+  height: auto;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: rgb(238, 237, 235);
+  fill: #413d3e;
+  list-style-type: none;
+  gap: 12px;
+}
+
+.toolbar-wrapper li {
+  marker-end: none;
+}
+
+.toolbar-wrapper li:hover {
+  fill: orange;
+}
+
+.toolbar-wrapper .toolbar-drawer {
+  background-color: #fff1e6;
+  min-width: 10rem;
+  min-height: 30rem;
+}
+
+.toolbar-wrapper .toolbar-drawer .toolbar-drawer-header {
+  background-color: aqua;
+  padding: 8px;
+}
+.toolbar-wrapper .toolbar-drawer .toolbar-drawer-header h1 {
+  font-size: 0.8rem;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.toolbar-wrapper .toolbar-drawer .toolbar-drawer-header {
+  background-color: aqua;
+  padding: 6px;
+  font-size: 1rem;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+}
+
+.toolbar-drawer-tools {
+  display: flex;
+  flex-direction: column;
+}
+.toolbar-wrapper .toolbar-drawer .toolbar-drawer-main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.toolbar-wrapper
+  .toolbar-drawer
+  .toolbar-drawer-main
+  .toolbar-drawer-tools
+  svg {
+  background-color: aquamarine;
+  width: 2rem;
+}
+.toolbar-wrapper .toolbar-drawer .toolbar-drawer-graph {
+  background-color: aquamarine;
+  width: 40rem;
+}

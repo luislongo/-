@@ -1,32 +1,23 @@
 import { ArcballControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
-import store from "./app/store";
-import StoreyIcon from "./assets/icons/storeys.icon";
-import Storey from "./features/building/types/Storey.type";
+import Toolbar from "./components/Toolbar";
 import Plane from "./Plane";
+import { useStoreys } from "./services/building/hooks/storey.hooks";
 
 function App() {
-  const storeys = useSelector((state: any) => state.storey as Storey[]);
-
-  const addStorey = () => {
-    store.dispatch({ type: "storey/increment" });
-  };
+  const storeys = useStoreys();
 
   return (
     <>
-      <ul className="toolbar">
-        <li onClick={addStorey}>{<StoreyIcon />}</li>
-        <li>{<StoreyIcon />}</li>
-      </ul>
-      {console.log(storeys)}
+      <Toolbar />
       <div className="canva">
         <Canvas>
-          {storeys.map((storey) => (
-            <Plane position={[0, storey.level, 0]} scale={[10, 0.1, 10]} />
+          {storeys.map((storey, index) => (
+            <Plane key={index} position={[0, storey.level, 0]} />
           ))}
-          <ArcballControls />
+
+          <ArcballControls position={[100, 100, 100]} />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
         </Canvas>

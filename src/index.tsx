@@ -3,16 +3,18 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
-import store from "./app/store";
+import { ProjectService } from "./services/building/services/project.service";
+import { StoreyService } from "./services/building/services/storey.service";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ProjectService>
+      <StoreyService>
+        <App />
+      </StoreyService>
+    </ProjectService>
   </React.StrictMode>
 );
 

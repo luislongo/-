@@ -1,4 +1,4 @@
-export default () => (
+const StoreyIcon = () => (
   <svg
     version="1.2"
     baseProfile="tiny"
@@ -21,3 +21,5 @@ export default () => (
     />
   </svg>
 );
+
+export default StoreyIcon;
