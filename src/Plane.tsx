@@ -12,12 +12,14 @@ function Plane(props: any) {
     <mesh
       {...props}
       ref={mesh}
-      onClick={(event) => setActive(!active)}
+      onClick={(event) => {
+        props.event(event);
+      }}
       onPointerOver={(event) => setHover(true)}
       onPointerOut={(event) => setHover(false)}
     >
       <boxGeometry args={[10, 0.1, 10]} />
-      <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
+      <meshStandardMaterial color={active ? "hotpink" : "orange"} />
     </mesh>
   );
 }

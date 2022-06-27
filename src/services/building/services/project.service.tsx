@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { generateUUID } from "three/src/math/MathUtils";
 import Contextualizer from "../../Contextualizer";
 import ProvidedServices from "../../ProvidedServices";
 import IProject from "../models/project.model";
@@ -18,10 +19,13 @@ const ProjectServiceContext = Contextualizer.createContext(
 );
 
 export const ProjectService: FC<any> = ({ children }) => {
+  const guid = generateUUID();
   const [project, setProject] = useState<IProject>({
     name: "test",
-    storeys: [{ name: "level 1", level: 0 }],
-  });
+    elements: { [guid]: { guid: guid, name: "Level 0", level: 0 } },
+    storeys: [guid],
+    storeyConstraints: {},
+  } as IProject);
 
   const projectService: IProjectService = {
     current: () => project,
@@ -31,7 +35,7 @@ export const ProjectService: FC<any> = ({ children }) => {
     setName: (newName: string) => {
       setProject({ ...project, name: newName });
     },
-    set: (reducer: Reducer) => setProject(reducer),
+    set: (reducer: Reducer) => setProject(reducer(project)),
   };
 
   return (

@@ -1,6 +1,12 @@
-import Storey from "./storey.model";
+import IFCElement from "./ifcelement.model";
 
-export default interface Project {
+export type StoreyConstraint = {
+  refGuid: string;
+  offset: number;
+};
+export default interface Project extends IFCElement {
   name: string;
-  storeys: Storey[];
+  elements: { [guid: string]: any };
+  storeys: string[];
+  storeyConstraints: { [guid: string]: StoreyConstraint };
 }

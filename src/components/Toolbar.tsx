@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { generateUUID } from "three/src/math/MathUtils";
 import StoreyIcon from "../assets/icons/storeys.icon";
 import { useStoreyService } from "../services/building/hooks/storey.hooks";
 import "./Toolbar.css";
@@ -8,13 +9,25 @@ const Toolbar = () => {
   const [curLevel, setCurLevel] = useState(0);
 
   const addStorey = () => {
-    storeyService.addStorey({
-      level: curLevel,
-      name: `Level ${curLevel}`,
-    });
+    const refGuid = Object.keys(storeyService.current())[
+      storeyService.nrOfStories() - 1
+    ];
+    storeyService.addStorey(
+      {
+        guid: generateUUID(),
+        level: 0,
+        name: `Level ${curLevel}`,
+      },
+      { refGuid: refGuid, offset: curLevel + 1 }
+    );
 
     setCurLevel(curLevel + 2.5);
     console.log(storeyService.current());
+  };
+
+  const removeStorey = () => {
+    const storeys = storeyService.current();
+    storeyService.removeStorey(storeys[0].guid);
   };
 
   return (
@@ -23,6 +36,7 @@ const Toolbar = () => {
 
       <ul className="toolbar-menu">
         <li onClick={addStorey}>{<StoreyIcon />}</li>
+        <li onClick={removeStorey}>{<StoreyIcon />}</li>
       </ul>
     </div>
   );

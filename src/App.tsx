@@ -3,10 +3,14 @@ import { Canvas } from "@react-three/fiber";
 import "./App.css";
 import Toolbar from "./components/Toolbar";
 import Plane from "./Plane";
-import { useStoreys } from "./services/building/hooks/storey.hooks";
+import {
+  useStoreys,
+  useStoreyService,
+} from "./services/building/hooks/storey.hooks";
 
 function App() {
-  const storeys = useStoreys();
+  const storeyService = useStoreyService();
+  const storeys = Object.values(useStoreys());
 
   return (
     <>
@@ -14,7 +18,11 @@ function App() {
       <div className="canva">
         <Canvas>
           {storeys.map((storey, index) => (
-            <Plane key={index} position={[0, storey.level, 0]} />
+            <Plane
+              key={index}
+              position={[0, storey.level, 0]}
+              event={() => storeyService.removeStorey(storey.guid)}
+            />
           ))}
 
           <ArcballControls position={[100, 100, 100]} />
